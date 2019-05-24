@@ -1,0 +1,11 @@
+version: 2
+
+jobs: 
+  build:
+    machine: true
+    working_directory: ~/app
+    steps: 
+      - run:
+          name: Build API
+          command: |
+            docker-compose run app sh -c "python manage.py test tests"
