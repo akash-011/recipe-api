@@ -8,4 +8,4 @@ jobs:
       - run:
           name: Build API
           command: |
-            docker-compose run app sh -c "python manage.py test app.tests"
+            docker-compose -f ../docker-compose.yml run app python manage.py test tests
