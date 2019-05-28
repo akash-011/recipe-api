@@ -9,4 +9,4 @@ jobs:
       - run:
           name: Build API
           command: |
-            docker-compose run app python manage.py test tests
+            docker-compose run app python manage.py test
