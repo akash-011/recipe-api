@@ -7,6 +7,6 @@ jobs:
     steps: 
       - checkout
       - run:
-          name: Build API
+          name: Test API
           command: |
             docker-compose run app python manage.py test
