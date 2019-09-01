@@ -1,6 +1,6 @@
 version: "3"
 
-services: 
+services:
   app:
     build:
       context: .
@@ -23,7 +23,10 @@ services:
 
   db:
     image: postgres:10-alpine
+    restart: always
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=dbpassword
+    ports:
+      - "5432:5432"
