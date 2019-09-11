@@ -11,6 +11,8 @@ class TagViewSet(
     viewsets.GenericViewSet,
     mixins.ListModelMixin,
     mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
 ):
     """Manage tags in the database"""
 
@@ -27,7 +29,13 @@ class TagViewSet(
         serializer.save(user=self.request.user)
 
 
-class IngredientViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.CreateModelMixin):
+class IngredientViewSet(
+    viewsets.GenericViewSet,
+    mixins.ListModelMixin,
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.DestroyModelMixin,
+):
     """Manage ingredients in the database"""
 
     authentication_classes = (TokenAuthentication,)
@@ -46,6 +54,7 @@ class IngredientViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.C
 
 class RecipeViewSet(viewsets.ModelViewSet):
     """Manage recipes in the database"""
+
     serializer_class = serializers.RecipeSerializer
     queryset = Recipe.objects.all()
     authentication_classes = (TokenAuthentication,)
@@ -57,7 +66,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         """Return appropriate serializer class"""
-        if self.action == 'retrieve':
+        if self.action == "retrieve":
             return serializers.RecipeDetailSerializer
 
         return self.serializer_class
